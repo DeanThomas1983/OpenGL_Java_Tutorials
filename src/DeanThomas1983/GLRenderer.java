@@ -65,13 +65,39 @@ public class GLRenderer implements GLEventListener {
         
         // Drawing Using Triangles
         gl.glBegin(GL.GL_TRIANGLES);
-            gl.glColor3f(1.0f, 0.0f, 0.0f);    // Set the current drawing color to red
-            gl.glVertex3f(0.0f, 1.0f, 0.0f);   // Top
-            gl.glColor3f(0.0f, 1.0f, 0.0f);    // Set the current drawing color to green
-            gl.glVertex3f(-1.0f, -1.0f, 0.0f); // Bottom Left
-            gl.glColor3f(0.0f, 0.0f, 1.0f);    // Set the current drawing color to blue
-            gl.glVertex3f(1.0f, -1.0f, 0.0f);  // Bottom Right
-        // Finished Drawing The Triangle
+        {
+            //  Draw a square based pyramid
+            //  Front triangle
+            gl.glColor3f(1.0f,0.0f,0.0f);          // Red
+            gl.glVertex3f( 0.0f, 1.0f, 0.0f);          // Top Of Triangle (Front)
+            gl.glColor3f(0.0f,1.0f,0.0f);          // Green
+            gl.glVertex3f(-1.0f,-1.0f, 1.0f);          // Left Of Triangle (Front)
+            gl.glColor3f(0.0f,0.0f,1.0f);          // Blue
+            gl.glVertex3f( 1.0f,-1.0f, 1.0f);          // Right Of Triangle (Front)
+            //  Right triangle
+            gl.glColor3f(1.0f,0.0f,0.0f);          // Red
+            gl.glVertex3f( 0.0f, 1.0f, 0.0f);          // Top Of Triangle (Right)
+            gl.glColor3f(0.0f,0.0f,1.0f);          // Blue
+            gl.glVertex3f( 1.0f,-1.0f, 1.0f);          // Left Of Triangle (Right)
+            gl.glColor3f(0.0f,1.0f,0.0f);          // Green
+            gl.glVertex3f( 1.0f,-1.0f, -1.0f);         // Right Of Triangle (Right)
+            //  Back triangle
+            gl.glColor3f(1.0f,0.0f,0.0f);          // Red
+            gl.glVertex3f( 0.0f, 1.0f, 0.0f);          // Top Of Triangle (Back)
+            gl.glColor3f(0.0f,1.0f,0.0f);          // Green
+            gl.glVertex3f( 1.0f,-1.0f, -1.0f);         // Left Of Triangle (Back)
+            gl.glColor3f(0.0f,0.0f,1.0f);          // Blue
+            gl.glVertex3f(-1.0f,-1.0f, -1.0f);         // Right Of Triangle (Back)
+            //  Left triangle
+            gl.glColor3f(1.0f,0.0f,0.0f);          // Red
+            gl.glVertex3f( 0.0f, 1.0f, 0.0f);          // Top Of Triangle (Left)
+            gl.glColor3f(0.0f,0.0f,1.0f);          // Blue
+            gl.glVertex3f(-1.0f,-1.0f,-1.0f);          // Left Of Triangle (Left)
+            gl.glColor3f(0.0f,1.0f,0.0f);          // Green
+            gl.glVertex3f(-1.0f,-1.0f, 1.0f);          // Right Of Triangle (Left)
+            //  No need for bottom square, as it will not be visible
+        }
+        // Finished Drawing the Pyramid
         gl.glEnd();
 
         // Reset the current matrix to the "identity"
@@ -83,14 +109,47 @@ public class GLRenderer implements GLEventListener {
         //  Rotate the quad
         gl.glRotatef(rQuad,1.0f,0.0f,0.0f);
         
-        // Draw A Quad
+        // Draw A Cube
         gl.glBegin(GL.GL_QUADS);
-            gl.glColor3f(0.5f, 0.5f, 1.0f);    // Set the current drawing color to light blue
-            gl.glVertex3f(-1.0f, 1.0f, 0.0f);  // Top Left
-            gl.glVertex3f(1.0f, 1.0f, 0.0f);   // Top Right
-            gl.glVertex3f(1.0f, -1.0f, 0.0f);  // Bottom Right
-            gl.glVertex3f(-1.0f, -1.0f, 0.0f); // Bottom Left
-        // Done Drawing The Quad
+        {
+            //  Draw the top
+            gl.glColor3f(0.0f,1.0f,0.0f);          // Set The Color To Green
+            gl.glVertex3f( 1.0f, 1.0f,-1.0f);          // Top Right Of The Quad (Top)
+            gl.glVertex3f(-1.0f, 1.0f,-1.0f);          // Top Left Of The Quad (Top)
+            gl.glVertex3f(-1.0f, 1.0f, 1.0f);          // Bottom Left Of The Quad (Top)
+            gl.glVertex3f( 1.0f, 1.0f, 1.0f);          // Bottom Right Of The Quad (Top)
+            //  Draw the bottom
+            gl.glColor3f(1.0f,0.5f,0.0f);          // Set The Color To Orange
+            gl.glVertex3f( 1.0f,-1.0f, 1.0f);          // Top Right Of The Quad (Bottom)
+            gl.glVertex3f(-1.0f,-1.0f, 1.0f);          // Top Left Of The Quad (Bottom)
+            gl.glVertex3f(-1.0f,-1.0f,-1.0f);          // Bottom Left Of The Quad (Bottom)
+            gl.glVertex3f( 1.0f,-1.0f,-1.0f);          // Bottom Right Of The Quad (Bottom)
+            //  Draw the front
+            gl.glColor3f(1.0f,0.0f,0.0f);          // Set The Color To Red
+            gl.glVertex3f( 1.0f, 1.0f, 1.0f);          // Top Right Of The Quad (Front)
+            gl.glVertex3f(-1.0f, 1.0f, 1.0f);          // Top Left Of The Quad (Front)
+            gl.glVertex3f(-1.0f,-1.0f, 1.0f);          // Bottom Left Of The Quad (Front)
+            gl.glVertex3f( 1.0f,-1.0f, 1.0f);          // Bottom Right Of The Quad (Front)
+            //  Draw the back
+            gl.glColor3f(1.0f,1.0f,0.0f);          // Set The Color To Yellow
+            gl.glVertex3f( 1.0f,-1.0f,-1.0f);          // Bottom Left Of The Quad (Back)
+            gl.glVertex3f(-1.0f,-1.0f,-1.0f);          // Bottom Right Of The Quad (Back)
+            gl.glVertex3f(-1.0f, 1.0f,-1.0f);          // Top Right Of The Quad (Back)
+            gl.glVertex3f( 1.0f, 1.0f,-1.0f);          // Top Left Of The Quad (Back)
+            //  Draw the left
+            gl.glColor3f(0.0f,0.0f,1.0f);          // Set The Color To Blue
+            gl.glVertex3f(-1.0f, 1.0f, 1.0f);          // Top Right Of The Quad (Left)
+            gl.glVertex3f(-1.0f, 1.0f,-1.0f);          // Top Left Of The Quad (Left)
+            gl.glVertex3f(-1.0f,-1.0f,-1.0f);          // Bottom Left Of The Quad (Left)
+            gl.glVertex3f(-1.0f,-1.0f, 1.0f);          // Bottom Right Of The Quad (Left)
+            //  Draw the right
+            gl.glColor3f(1.0f,0.0f,1.0f);          // Set The Color To Violet
+            gl.glVertex3f( 1.0f, 1.0f,-1.0f);          // Top Right Of The Quad (Right)
+            gl.glVertex3f( 1.0f, 1.0f, 1.0f);          // Top Left Of The Quad (Right)
+            gl.glVertex3f( 1.0f,-1.0f, 1.0f);          // Bottom Left Of The Quad (Right)
+            gl.glVertex3f( 1.0f,-1.0f,-1.0f);          // Bottom Right Of The Quad (Right)
+        }
+        // Done Drawing The Cube
         gl.glEnd();
 
         // Flush all drawing operations to the graphics card
