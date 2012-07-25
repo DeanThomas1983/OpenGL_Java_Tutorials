@@ -73,7 +73,7 @@ public class OpenGL_Java_Tutorials2 extends JFrame {
         if(!show)
             animator.stop();
         super.setVisible(show);
-        if(!show)
+        if(show)
             animator.start();
     }
 

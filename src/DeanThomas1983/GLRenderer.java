@@ -14,6 +14,9 @@ import javax.media.opengl.glu.GLU;
  */
 public class GLRenderer implements GLEventListener {
 
+    float rTri = 0.0f;
+    float rQuad = 0.0f;
+    
     public void init(GLAutoDrawable drawable) {
         // Use debug pipeline
         // drawable.setGL(new DebugGL(drawable.getGL()));
@@ -57,6 +60,9 @@ public class GLRenderer implements GLEventListener {
         // Move the "drawing cursor" around
         gl.glTranslatef(-1.5f, 0.0f, -6.0f);
 
+        //  Rotate the triangle
+        gl.glRotatef(rTri,0.0f,1.0f,0.0f);
+        
         // Drawing Using Triangles
         gl.glBegin(GL.GL_TRIANGLES);
             gl.glColor3f(1.0f, 0.0f, 0.0f);    // Set the current drawing color to red
@@ -68,8 +74,15 @@ public class GLRenderer implements GLEventListener {
         // Finished Drawing The Triangle
         gl.glEnd();
 
+        // Reset the current matrix to the "identity"
+        gl.glLoadIdentity();
+        
         // Move the "drawing cursor" to another position
-        gl.glTranslatef(3.0f, 0.0f, 0.0f);
+        gl.glTranslatef(1.5f, 0.0f, -6.0f);
+        
+        //  Rotate the quad
+        gl.glRotatef(rQuad,1.0f,0.0f,0.0f);
+        
         // Draw A Quad
         gl.glBegin(GL.GL_QUADS);
             gl.glColor3f(0.5f, 0.5f, 1.0f);    // Set the current drawing color to light blue
@@ -82,6 +95,9 @@ public class GLRenderer implements GLEventListener {
 
         // Flush all drawing operations to the graphics card
         gl.glFlush();
+        
+        rTri+=0.2f;     // Increase The Rotation Variable For The Triangle
+        rQuad-=0.15f;   // Decrease The Rotation Variable For The Quad  
     }
 
     public void displayChanged(GLAutoDrawable drawable, boolean modeChanged, boolean deviceChanged) {
